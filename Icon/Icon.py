@@ -15,3 +15,43 @@
 # Usage:
 #  TBD
 """
+class GenRtlWrap:
+    
+    def gen_wrap(self, dict_list):
+        rtl_file = '"example_wrap.sv"'
+        print(f'Generating RTL {rtl_file}')
+
+
+class IconMain:
+    
+    def __init__(self):
+        self.dict_t    = {
+            'ip_name'  : '',
+            'owner'    : '',
+            'module'   : [],
+            'mod_inst' : []
+        }
+        
+    def parse_file(self, file):
+        print (f'Parsing file {xls_file}')
+        
+        dict_list = []
+        self.gen_jdb(dict_list)
+
+    def gen_jdb(self, dict_list):
+        jdb_file = '"example.json"'
+        print (f'Generating JSON DB file: {jdb_file}')
+        return jdb_file
+
+    def parse_jdb(self, file):
+        print('Parsing JDB file')
+        print('Updating dic_t')
+        return self.dict_t
+        
+        
+xls_file = 'example.xlsx'
+icon = IconMain()
+jdb = icon.parse_file(xls_file)
+rtldb = icon.parse_jdb(jdb)
+grw   = GenRtlWrap()
+grw.gen_wrap(rtldb)
