@@ -27,6 +27,28 @@ attribute_name = 'owner'
 value = get_value_by_attribute(data, k_col_hdr, v_col_hdr, attribute_name)
 print(f"Value associated with attribute '{attribute_name}': {value}")
 
+########################################################################################################
+import pandas as pd
+import json
+
+def convert_json_to_excel(json_file, excel_file):
+    """Converts JSON data with multiple worksheets to an Excel file."""
+
+    with open(json_file, 'r') as f:
+        data = json.load(f)
+
+    writer = pd.ExcelWriter(excel_file)
+
+    for sheet_name, sheet_data in data.items():
+        df = pd.DataFrame(sheet_data)
+        df.to_excel(writer, sheet_name=sheet_name, index=False)
+
+    writer.save()
+
+# Example usage
+json_file = 'icon.json'  # Replace with your JSON file
+excel_file = 'output.xlsx'
+convert_json_to_excel(json_file, excel_file)
 ######################################################################################################
 import pandas as pd
 import re
