@@ -28,6 +28,29 @@ value = get_value_by_attribute(data, k_col_hdr, v_col_hdr, attribute_name)
 print(f"Value associated with attribute '{attribute_name}': {value}")
 
 ######################################################################################################
+import pandas as pd
+import re
+import ast
+
+df = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})
+
+string = '[{A:1},{B:3}]'
+
+def string_quotes(data):
+    processed_string = re.sub(r'(\w+)', r'"\1"', data)
+
+    # Convert the processed string to a list of dictionary elements
+    try:
+        result = ast.literal_eval(processed_string)
+    except (ValueError, SyntaxError):
+        print("Invalid input string format")
+        
+    return result
+
+str = string_quotes(string)
+print(str)
+
+######################################################################################################
 # Load the Excel file
 excel_file = 'your_excel_file.xlsx'
 
