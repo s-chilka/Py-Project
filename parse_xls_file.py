@@ -9,6 +9,9 @@ data = pd.DataFrame([
     {'Attribute': 'param_def', 'Value': '{top : \n [\n {DATA_WIDTH      : {default : 8}}\n ]\n}', 'Description': ''}
 ])
 
+#Substitute missing values to an empty string
+data.fillna('', inplace=True) 
+
 # Function to get the value associated with a specific attribute
 def get_value_by_attribute(data, k_col_hdr, v_col_hdr, attribute_name):
     result = data.loc[data[col_hdr] == attribute_name, v_col_hdr].values
