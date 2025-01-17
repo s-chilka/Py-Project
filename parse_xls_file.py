@@ -1,5 +1,30 @@
 import pandas as pd
 
+########################################################################################################
+# Creating the DataFrame
+data = pd.DataFrame([
+    {'Attribute': 'wrap_name', 'Value': 'my_ip', 'Description': ''},
+    {'Attribute': 'owner', 'Value': 'schilka', 'Description': 'TBD'},
+    {'Attribute': 'instance_list', 'Value': '[{ctrl : 1}, {mem : 2}]', 'Description': ''},
+    {'Attribute': 'param_def', 'Value': '{top : \n [\n {DATA_WIDTH      : {default : 8}}\n ]\n}', 'Description': ''}
+])
+
+# Function to get the value associated with a specific attribute
+def get_value_by_attribute(data, k_col_hdr, v_col_hdr, attribute_name):
+    result = data.loc[data[col_hdr] == attribute_name, v_col_hdr].values
+    if result.size > 0:
+        return result[0]
+    else:
+        return None
+
+# Example usage
+k_col_hdr      = 'Attribute'
+v_col_hdr      = 'Value'
+attribute_name = 'owner'
+value = get_value_by_attribute(data, k_col_hdr, v_col_hdr, attribute_name)
+print(f"Value associated with attribute '{attribute_name}': {value}")
+
+######################################################################################################
 # Load the Excel file
 excel_file = 'your_excel_file.xlsx'
 
